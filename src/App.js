@@ -11,7 +11,7 @@ function App() {
   const [meanings, setMeanings] = useState([]);
   const [word, setWord] = useState("");
   const [category, setCategory] = useState("en");
-  const [lightMode,setLightMode] = useState(false)
+  const [lightMode, setLightMode] = useState(false);
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -61,23 +61,22 @@ function App() {
     },
   }));
 
-
-  const dictionaryApi = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`
-      );
-      console.log(data);
-      setMeanings(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  console.log(meanings);
   useEffect(() => {
-    dictionaryApi();
-  }, [word, category,dictionaryApi]);
+    const dictionaryApi = async () => {
+      try {
+        const { data } = await axios.get(
+          `https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`
+        );
+        console.log(data);
+        setMeanings(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    dictionaryApi(); // Call dictionaryApi function
+  }, [word, category]);
+  console.log(meanings);
   return (
     <div
       className="App"

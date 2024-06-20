@@ -77,7 +77,7 @@ function App() {
   console.log(meanings);
   useEffect(() => {
     dictionaryApi();
-  }, [word, category]);
+  }, [word, category,dictionaryApi]);
   return (
     <div
       className="App"
